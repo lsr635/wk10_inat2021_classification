@@ -4,6 +4,7 @@ import torch.nn as nn
 import pandas as pd
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+from PIL import Image
 
 from data.dataset import InatDataset
 from models.resnet_transfer import ResNet50Transfer
