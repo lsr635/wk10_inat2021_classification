@@ -5,8 +5,8 @@ START_ID = 0
 END_ID = 1000
 
 # 路径（Windows）
-ORIGINAL_JSON = r"D:\OneDrive\online_research\wk10\inat2021\train_mini.json"
-NEW_JSON = r"D:\OneDrive\online_research\wk10\inat2021\train_mini_subset_00000_01000.json"
+ORIGINAL_JSON = r"D:\OneDrive\online_research\wk10_inat2021_classification\val.json"
+NEW_JSON = r"D:\OneDrive\online_research\wk10_inat2021_classification\val_subset_00000_01000.json"
 
 def is_in_range_from_file_name(file_name):
     try:
