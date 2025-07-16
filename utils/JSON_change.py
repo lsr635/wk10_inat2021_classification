@@ -2,7 +2,7 @@ import json
 
 # 编号范围
 START_ID = 0
-END_ID = 1000
+END_ID = 99
 
 # 路径（Windows）
 ORIGINAL_JSON = r"D:\OneDrive\online_research\wk10\inat2021\train_mini.json"
