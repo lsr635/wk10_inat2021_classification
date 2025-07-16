@@ -12,16 +12,15 @@ from utils.transforms import train_transform, val_transform, tta_transforms
 from utils.mixup import mixup_data, mixup_criterion
 
 # ----- 配置 -----
-TRAIN_JSON = "/root/autodl-fs/Animals/train_mini_subset_00000_01000.json"
-VAL_JSON = "/root/autodl-fs/Animals/val_subset_00000_01000.json"
-TRAIN_DIR = "/root/autodl-fs/Animals/train_mini"
-VAL_DIR = "/root/autodl-fs/Animals/val"
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+TRAIN_JSON_PATH = "/root/autodl-fs/Animals/data/split_jsons/0-99/train_60.json"
+VAL_JSON_PATH = "/root/autodl-fs/Animals/data/split_jsons/0-99/val_20.json"
+ROOT_DIR = "/root/autodl-fs/Animals"
 
 NUM_EPOCHS = 100
 BATCH_SIZE = 64
 PATIENCE = 8
 NUM_WORKERS = 4
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def evaluate_tta(model, dataset, criterion, tta_transforms):
     model.eval()
@@ -44,8 +43,8 @@ def evaluate_tta(model, dataset, criterion, tta_transforms):
     return val_loss / total, 100 * correct / total
 
 def train():
-    train_dataset = InatDataset(TRAIN_JSON, TRAIN_DIR, transform=train_transform)
-    val_dataset = InatDataset(VAL_JSON, VAL_DIR, transform=val_transform, class_to_idx=train_dataset.class_to_idx)
+    train_dataset = InatDataset(TRAIN_JSON_PATH, ROOT_DIR, transform=train_transform)
+    val_dataset = InatDataset(VAL_JSON_PATH, ROOT_DIR, transform=val_transform, class_to_idx=train_dataset.class_to_idx)
 
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
